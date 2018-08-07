@@ -148,10 +148,8 @@ class Files(db.Model):
 @app.route("/", methods=["GET", "POST"])
 def index():
     if request.method=='GET':
-        #user=load_user(request.form["lusername"])
-        #if user is None:
-         #   return render_template('new_home.html')
         return render_template('index.html')
+    user = load_user(request.form["username"])
     if request.method == "POST":
         if user is None:
             Email = request.form["email"]
@@ -688,6 +686,8 @@ def api_filter():
 def logout():
     logout_user()
     return redirect(url_for('index'))
+
+
 
 if __name__=="__main__":
     app.run()
